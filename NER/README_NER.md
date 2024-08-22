@@ -6,14 +6,14 @@ This repository contains code for training and testing Named Entity Recognition 
 
 ## setup
 
-Open the NER_code.ipynb notebook in [Google Colab](https://colab.research.google.com).
+Open the NER_code.ipynb notebook in [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/NimaMeghdadi/LEGALLENS-2024-DETECTING-LEGAL-VIOLATIONS/blob/main/NER/NER_code.ipynb).
 
 ## Train
 
 1. Execute the cells sequentially up to the part involving HuggingFace's.
 
 ## Test
-
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/NimaMeghdadi/LEGALLENS-2024-DETECTING-LEGAL-VIOLATIONS/blob/main/NER/NER_test.ipynb)
 ### Before Running the Test
 
 Set the following variables in the NER_test.ipynb notebook:
