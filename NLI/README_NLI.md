@@ -15,7 +15,7 @@ Open the NLI_code.ipynb notebook in [![Open In Colab](https://colab.research.goo
 1. Execute the cells in the NLI_code.ipynb notebook sequentially to train the model.
 
 ## Test
-
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/NimaMeghdadi/LEGALLENS-2024-DETECTING-LEGAL-VIOLATIONS/blob/main/NLI/NLI_test.ipynb)
 ### Before Running the Test
 
 Set the following variables in the NLI_test.ipynb notebook:
