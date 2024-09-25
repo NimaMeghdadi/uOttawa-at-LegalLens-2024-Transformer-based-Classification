@@ -1,87 +1,91 @@
-# LEGALLENS-2024-DETECTING-LEGAL-VIOLATIONS
+# uOttawa at LegalLens-2024: Transformer-based Classification
 
-## About The Project
-This project is my submission to LEGALLENS-2024-DETECTING-LEGAL-VIOLATIONS [competition](https://www.codabench.org/competitions/3052/) that is based on this [paper](https://aclanthology.org/2024.eacl-long.130/). 
-This competition focus on two main tasks:
-1. **NER**: Legal Named Entity Recognition (L-NER): Given possible online media text (review), determine or extract legal entities such as "violation," "violation by," "violation on," and "law."
-2. **NLI**: Legal Natural Language Inference (L-NLI): Given a premise summarizing a class action complaint and a hypothesis from an online media text, determine if the relationship is entailed, contradicted, or neutral, indicating any association between the review and the complaint.
+## Project Overview
 
-## How to run the code NER
+This repository contains the code and models used for the **LegalLens-2024 shared task**, which focuses on detecting legal violations within unstructured textual data and associating these violations with potentially affected individuals. 
 
-### Overview
+The project is divided into two subtasks:
+- **Subtask A: Legal Named Entity Recognition (L-NER)** - Identifying legal violations using Named Entity Recognition (NER) techniques.
+- **Subtask B: Legal Natural Language Inference (L-NLI)** - Linking legal violations to potentially affected individuals using Natural Language Inference (NLI).
 
-This repository contains code for training and testing Named Entity Recognition (NER) models using [spaCy](https://spacy.io/) and Hugging Face's transformers and database used for fine tuning is [darrow-ai/LegalLensNER](https://huggingface.co/datasets/darrow-ai/LegalLensNER).
+This repository demonstrates the effectiveness of transformer models such as **BERT**, **RoBERTa**, and **DeBERTa** for legal tasks.
 
-## setup
+---
 
-Open the NER_code.ipynb notebook in Colab
+## Table of Contents
 
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/NimaMeghdadi/LEGALLENS-2024-DETECTING-LEGAL-VIOLATIONS/blob/main/NER/NER_code.ipynb).
+- [Project Overview](#project-overview)
+- [Dataset](#dataset)
+- [Model Architectures](#model-architectures)
+- [Usage](#usage)
+- [Results](#results)
+- [License](#license)
 
-## Train
+---
 
-1. Execute the cells sequentially up to the part involving HuggingFace.
+## Dataset
 
-## Test
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/NimaMeghdadi/LEGALLENS-2024-DETECTING-LEGAL-VIOLATIONS/blob/main/NER/NER_test.ipynb)
-### Before Running the Test
+The datasets used for this project are provided by the **LegalLens-2024 shared task** organizers. They contain textual data representing legal violations and related entities. Each subtask uses different subsets of this data:
 
-Set the following variables in the NER_test.ipynb notebook:
+- **Subtask A: L-NER** dataset includes tokenized text and corresponding named entities (`violation`, `violation by`, `violation on`, `law`). [Explore the dataset](https://huggingface.co/datasets/darrow-ai/LegalLensNER).
+- **Subtask B: L-NLI** dataset involves sentence pairs (premise and hypothesis) with labels (`Entailment`, `Neutral`, `Contradict`). [Explore the dataset](https://huggingface.co/datasets/darrow-ai/LegalLensNLI).
 
-- **excel_file_path**: Directory of the test set in .xlsx format.
+### Data Split
+- **Training Set**: Provided by the organizers.
+- **Validation Set**: 20% of the training data.
+- **Test Set**: Separate from the validation set, used for final evaluation by the organizers.
 
-### Steps to Test the Model
+---
 
-1. Ensure your test set contains two columns: id and tokens.
-2. Open the NER_test.ipynb notebook in Google Colab.
-3. Execute the cells sequentially to run the test.
-run the NER_test.ipynb
+## Model Architectures
 
-The code will generate a predictions_NERLens.csv file containing three columns: id, tokens, and ner_tags.
+### Subtask A: Legal Named Entity Recognition (L-NER)
+- **Model**: Fine-tuned **DeBERTa-v3-base**.
+- **Library**: Utilized **spaCy** for tokenization and NER task configuration.
+- **Evaluation**: The model achieves an F1-score of **86.37%**.
 
-## Notes
+### Subtask B: Legal Natural Language Inference (L-NLI)
+- **Model**: Combined **RoBERTa** (ynie/roberta-large-snli_mnli_fever_anli_R1_R2_R3-nli) with a custom-built **CNN** for keyword detection.
+- **Library**: Used the **Hugging Face Transformers** library for tokenization and model training.
+- **Evaluation**: Achieved an F1-score of **72.4%** on the hidden test set, placing 5th in the competition.
 
-- Models are stored locally and should be accessible from the specified directories.
-- Ensure the directory paths are correctly set to avoid errors during training and testing.
+---
 
-By following these steps, you can successfully train and test your NER models using the provided notebooks.
+## Usage
 
-# How to run the code NLI
+You can use the code directly in [Google Colab](https://colab.research.google.com/github/NimaMeghdadi/LEGALLENS-2024-DETECTING-LEGAL-VIOLATIONS/).
 
-## Overview
+### Subtask A: Legal Named Entity Recognition (L-NER)
 
-This repository contains code for training and testing Natural language inference (NLI) task using [ynie/roberta-large-snli_mnli_fever_anli_R1_R2_R3-nli](https://huggingface.co/ynie/roberta-large-snli_mnli_fever_anli_R1_R2_R3-nli) model on Hugging Face. The dataset has been used from [darrow-ai/LegalLensNLI](https://huggingface.co/datasets/darrow-ai/LegalLensNLI).
+1. **Data Preprocessing**: Tokenize the text using spaCy's tokenizer and prepare the dataset for NER training.
 
-## Setup
+2. **Model Training**: Fine-tune the DeBERTa model on the L-NER dataset and save the model.
 
-Open the NLI_code.ipynb notebook in [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/NimaMeghdadi/LEGALLENS-2024-DETECTING-LEGAL-VIOLATIONS/blob/main/NLI/NLI_code.ipynb).
+3. **Model Testing**: Load the trained model and evaluate it on the test dataset.
 
-## Train
+### Subtask B: Legal Natural Language Inference (L-NLI)
 
-### Steps to Train the Model
+1. **Data Preprocessing**: Prepare the NLI dataset by tokenizing premises and hypotheses.
 
-1. Execute the cells in the NLI_code.ipynb notebook sequentially to train the model.
+2. **Model Training**: Train the combined RoBERTa-CNN model for NLI and save the model.
 
-## Test
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/NimaMeghdadi/LEGALLENS-2024-DETECTING-LEGAL-VIOLATIONS/blob/main/NLI/NLI_test.ipynb)
-### Before Running the Test
+3. **Model Testing**: Load the trained model and evaluate it on the test dataset.
 
-Set the following variables in the NLI_test.ipynb notebook:
+---
 
-- **excel_file_path**: Directory of the test set in .xlsx format.
+## Results
 
-### Steps to Test the Model
+### Subtask A: Legal Named Entity Recognition (L-NER)
+- Best F1-score: **86.37%**
 
-1. Ensure your test set contains three columns: id, premise and hypothesis.
-2. Open the NLI_test.ipynb notebook in Google Colab.
-3. Execute the cells sequentially to run the test.
-run the NLI_test.ipynb
+### Subtask B: Legal Natural Language Inference (L-NLI)
+- Best F1-score on validation: **88.6%**
+- Final F1-score on hidden test set: **72.4%**
 
-The code will generate a predictions_NLILens.csv file containing three columns: Premise, hypothesis, label.
+---
 
-## Notes
+## License
 
-- Models are stored locally and should be accessible from the specified directories.
-- Ensure the directory paths are correctly set to avoid errors during training and testing.
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
 
-By following these steps, you can successfully train and test your NLI models using the provided notebooks.
+
