@@ -53,7 +53,7 @@ The datasets used for this project are provided by the **LegalLens-2024 shared t
 
 ## Usage
 
-You can use the code directly in [Google Colab](https://colab.research.google.com/github/NimaMeghdadi/LEGALLENS-2024-DETECTING-LEGAL-VIOLATIONS/).
+You can use the code directly in [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/NimaMeghdadi/LEGALLENS-2024-DETECTING-LEGAL-VIOLATIONS/).
 
 ### Subtask A: Legal Named Entity Recognition (L-NER)
 
