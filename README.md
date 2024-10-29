@@ -19,6 +19,7 @@ This repository demonstrates the effectiveness of transformer models such as **B
 - [Model Architectures](#model-architectures)
 - [Usage](#usage)
 - [Results](#results)
+- [Citation](#citation)
 - [License](#license)
 
 ---
@@ -81,6 +82,22 @@ You can use the code directly in [![Open In Colab](https://colab.research.google
 ### Subtask B: Legal Natural Language Inference (L-NLI)
 - Best F1-score on validation: **88.6%**
 - Final F1-score on hidden test set: **72.4%**
+
+---
+
+## Citation
+
+```bibtex
+@misc{meghdadi2024uottawalegallens2024transformerbasedclassification,
+      title={uOttawa at LegalLens-2024: Transformer-based Classification Experiments}, 
+      author={Nima Meghdadi and Diana Inkpen},
+      year={2024},
+      eprint={2410.21139},
+      archivePrefix={arXiv},
+      primaryClass={cs.CL},
+      url={https://arxiv.org/abs/2410.21139}, 
+}
+```
 
 ---
 
